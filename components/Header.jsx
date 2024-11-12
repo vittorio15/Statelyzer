@@ -8,7 +8,7 @@ const Header = () => {
         </h1>
         
         {/* Right side */}
-        <nav className="space-x-10">
+        <nav className="space-x-10 pr-10">
           <a href="#" className="headerLink">
             Home
           </a>
