@@ -10,7 +10,10 @@
   h1 {
     @apply text-4xl cursor-default font-bold text-primary bg-gradient-to-r from-primary via-green-500 to-lime-400 inline-block text-transparent bg-clip-text;
   }
-  /* styles.css */
+.customButton {
+  @apply px-6 py-2 rounded-md bg-gradient-to-r from-primary via-green-500 to-lime-400 text-white;
+
+  }
 .headerLink {
   @apply text-lg text-gray-600 transition duration-300;
 }
@@ -20,13 +23,12 @@
 }
 
 .inputContainer {
-  @apply  w-5/12 pb-2 ml-10 rounded-2xl px-4;
+  @apply  w-8/12 pb-2 ml-10 rounded-2xl px-4;
 }
 
 .inputTable {
   @apply my-2 min-w-full table-auto border-separate border-2 bg-gradient-to-r from-primary via-green-500 to-lime-400 rounded-2xl border-spacing-0 shadow-2xl;
 }
-
 
 .numberInputtd {
   @apply px-4 py-2 flex justify-center border-b-2;
