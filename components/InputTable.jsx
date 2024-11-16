@@ -3,32 +3,37 @@
 import { useState, useEffect } from "react";
 import InputField from "./InputField";
 import Button from "./Button";
+import SkeletonLoader from "../utilities/SkeletonLoader";
+
+const inputFieldsBasic = [
+  "Total Assets", "Current Assets", "Cash & Cash Equivalents", 
+  "Total Liabilities", "Current Liabilities", "Long-Term Debt", 
+  "Shareholders' Equity", "Revenue", "Net Income"
+];
+
+const inputFieldsAdvanced = [
+  ...inputFieldsBasic, "Accounts Receivable", "Gross Profit", 
+  "Operating Income", "COGS", "SG&A", "Interest Expense", "Income Tax Expense"
+];
 
 const InputTable = () => {
   const [selectedInput, setSelectedInput] = useState('type1');
   const [isLoading, setIsLoading] = useState(true);
+  const [inputValues, setInputValues] = useState({});
+
   // Simulate loading effect
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
     }, 2000);
-  }, []);
+  }, []);  
 
-  const SkeletonLoader = () => (
-    <div className="mt-6 w-full my-2 animate-pulse bg-gradient-to-r from-primary via-green-500 to-lime-400 shadow-2xl rounded-2xl grid place-items-center">
-      <div className="my-2 h-12 bg-gray-200 rounded-2xl w-3/4"></div>
-      <div className="my-2 h-12 bg-gray-200 rounded-2xl w-1/2"></div>
-      <div className="my-2 h-12 bg-gray-200 rounded-2xl w-2/3"></div>
-      <div className="my-2 h-12 bg-gray-200 rounded-2xl w-4/5"></div>
-      <div className="my-2 h-12 bg-gray-200 rounded-2xl w-3/5"></div>
-      <div className="my-2 h-12 bg-gray-200 rounded-2xl w-2/5"></div>
-      <div className="my-2 h-12 bg-gray-200 rounded-2xl w-1/2"></div>
-      <div className="my-2 h-12 bg-gray-200 rounded-2xl w-5/6"></div>
-      <div className="my-2 h-12 bg-gray-200 rounded-2xl w-3/4"></div>
-      <div className="my-2 h-12 bg-gray-200 rounded-2xl w-1/3"></div>
-    </div>
-  );
-  
+  const handleInputChange = (field, value) => {
+    setInputValues((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
 
   const handleButtonClick = (inputType) => {
     setSelectedInput(inputType);
@@ -40,6 +45,9 @@ const InputTable = () => {
       setIsLoading(false);
     }, 2000);
   }
+
+  const fieldsToRender =
+  selectedInput === "type1" ? inputFieldsBasic : inputFieldsAdvanced;
 
   return (
     <div>
@@ -70,177 +78,23 @@ const InputTable = () => {
         {isLoading ? (
           <SkeletonLoader />
         ) : 
-        selectedInput === 'type1' ? (
+        (
           <table className="inputTable">
-            <thead>
-            </thead>
             <tbody>
-              <tr>
-                <td className="inputTabelLabel">Total Assets</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">Current Assets</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">Cash & Cash Equivalents</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>              
-              <tr>
-                <td className="inputTabelLabel">Total Liabilities</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">Current Liabilities</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">Long-Term Debt</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">Shareholders' Equity</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">Revenue</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel border-b-0">Net Income</td>
-                <td className="numberInputtd border-b-0">
-                  <InputField />
-                </td>
-              </tr>
+              {fieldsToRender.map((field) => (
+                <tr key={field}>
+                  <td className="inputTabelLabel">{field}</td>
+                  <td className="numberInputtd">
+                    <InputField
+                      value={inputValues[field] || ""}
+                      onChange={(value) => handleInputChange(field, value)}
+                    />
+                  </td>
+                </tr>
+              ))}
             </tbody>
-          </table>
-        ) : (
-          <table className="inputTable">
-            <thead>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="inputTabelLabel">Total Assets</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">Current Assets</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">Cash & Cash Equivalents</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>              
-              <tr>
-                <td className="inputTabelLabel">Total Liabilities</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">Current Liabilities</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">Long-Term Debt</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">Shareholders' Equity</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">Revenue</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">Net Income</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">Accounts Receivable</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">Long-Term Debt</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">Gross Profit</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">Operating Income</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">COGS</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">SG&A</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel">Interest Expense</td>
-                <td className="numberInputtd">
-                  <InputField />
-                </td>
-              </tr>
-              <tr>
-                <td className="inputTabelLabel  border-b-0">Income Tax Expense</td>
-                <td className="numberInputtd  border-b-0">
-                  <InputField />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        )}
+          </table>)
+        }
         <div className="flex justify-center mt-7">
           <Button 
             size="lg" 

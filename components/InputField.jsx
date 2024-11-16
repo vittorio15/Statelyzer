@@ -1,7 +1,5 @@
-import { useState } from "react";
 
-const InputField = () => {
-  const [value, setValue] = useState("");
+const InputField = ({ value, onChange}) => {
 
   const formatInput = (inputValue) => {
     // Remove any existing spaces
@@ -12,7 +10,7 @@ const InputField = () => {
 
   const handleChange = (event) => {
     const formattedValue = formatInput(event.target.value);
-    setValue(formattedValue);
+    onChange(formattedValue);
   };
 
   return (
