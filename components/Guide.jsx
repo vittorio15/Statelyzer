@@ -1,5 +1,6 @@
+import Button from "./Button";
 
-const Guide = ({ isLoading, generatedText }) => {
+const Guide = ({ isLoading, generatedText, resetStates }) => {
 
   return (
     <div>
@@ -20,6 +21,15 @@ const Guide = ({ isLoading, generatedText }) => {
         <div className="p-4 bg-gray-100 rounded-md">
           <h3 className="text-lg font-bold mb-4">Generated Insights</h3>
           <p>{generatedText}</p>
+          <div className="flex justify-center mt-7">
+          <Button 
+            size="lg" 
+            variant="secondary" 
+            onClick={() => resetStates()}
+          >
+          Reset
+          </Button>
+        </div>
         </div>
       ) : (
         <div className="my-2 p-6 bg-gray-100 rounded-lg shadow-2xl border-4 rounded-xl border-lime-400 mr-10">

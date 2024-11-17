@@ -2,55 +2,38 @@
 
 import InputTable from './InputTable';
 import Guide from './Guide';
+import Calculator from '../utilities/Calculator';
 import { useState, useEffect } from 'react';
+import TextGenerator from '@utilities/TextGenerator';
 
 const MainLayout = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [calculatedData, setCalculatedData] = useState(null);
   const [generatedText, setGeneratedText] = useState("");
 
-    // Simulate loading effect
-    useEffect(() => {
+    const handleGenerate = async (inputValues) => {
+      setIsLoading(true);
+    
+      // Perform calculations and text generation synchronously
+      const calculationResult = Calculator({ inputValues });
+      setCalculatedData(calculationResult);
+    
+      const textResult = TextGenerator({ calculatedData: calculationResult });
+      setGeneratedText(textResult);
+    
       setTimeout(() => {
         setIsLoading(false);
-      }, 2000);
-    }, []); 
-
-  const handleGenerate = (inputValues) => {
-    setIsLoading(true);
-
-    // Simulate calculations and text generation
-    setTimeout(() => {
-      // Perform calculations
-      const calculationResult = calculateResults(inputValues);
-
-      // Generate text based on the results
-      const textResult = generateText(calculationResult);
-
-      // Update states with results
-      setCalculatedData(calculationResult);
-      setGeneratedText(textResult);
-
-      setIsLoading(false);
-    }, 2000);
-  };
-
-  const calculateResults = (inputValues) => {
-    // Example calculation: Revenue to Net Income ratio
-    const revenue = parseFloat(inputValues["Revenue"] || 0);
-    const netIncome = parseFloat(inputValues["Net Income"] || 0);
-
-    return {
-      revenueToNetIncome: netIncome !== 0 ? (revenue / netIncome).toFixed(2) : "N/A",
+      }, 1000); 
     };
-  };
-
-  const generateText = (results) => {
-    if (results.revenueToNetIncome === "N/A") {
-      return "We couldn't calculate the Revenue to Net Income ratio.";
-    }
-    return `The Revenue to Net Income ratio is ${results.revenueToNetIncome}.`;
-  };
+    
+    const resetStates = () => {
+      setCalculatedData(null);  
+      setGeneratedText("");  
+      setIsLoading(true);   
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);       
+    };
 
   return (
     <div className="flex justify-between mt-10 p-6">
@@ -61,7 +44,7 @@ const MainLayout = () => {
 
       {/* Right side (Guide or Generated Text) */}
       <div className="w-4/12 ml-4">
-        <Guide isLoading={isLoading} generatedText={generatedText} />
+        <Guide isLoading={isLoading} generatedText={generatedText} resetStates={resetStates}/>
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 const SkeletonLoader = () => {
 
   return(
-    <div className="inputContainer">
-      <div className="mt-6 w-full h-auto overflow-hidden my-2 animate-pulse bg-gradient-to-r from-primary via-green-500 to-lime-400 shadow-2xl rounded-2xl grid place-items-center">
+    <div className="w-8/12 pb-2 ml-10 rounded-2xl px-4">
+      <div className="mt-6 w-full h-auto overflow-hidden my-2 animate-pulse bg-gradient-to-r from-primary via-green-500 to-lime-400 shadow-2xl rounded-2xl flex flex-col items-center">
         <div className="my-2 h-12 bg-gray-200 rounded-2xl w-3/4"></div>
         <div className="my-2 h-12 bg-gray-200 rounded-2xl w-1/2"></div>
         <div className="my-2 h-12 bg-gray-200 rounded-2xl w-2/3"></div>
@@ -15,6 +15,7 @@ const SkeletonLoader = () => {
         <div className="my-2 h-12 bg-gray-200 rounded-2xl w-1/3"></div>
       </div>
     </div>
+
   )
 };
 
