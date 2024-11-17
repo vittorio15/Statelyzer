@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import InputField from "./InputField";
 import Button from "./Button";
 import SkeletonLoader from "../utilities/SkeletonLoader";
@@ -16,17 +16,9 @@ const inputFieldsAdvanced = [
   "Operating Income", "COGS", "SG&A", "Interest Expense", "Income Tax Expense"
 ];
 
-const InputTable = () => {
+const InputTable = ({ onGenerate, isLoading, calculatedData }) => {
   const [selectedInput, setSelectedInput] = useState('type1');
-  const [isLoading, setIsLoading] = useState(true);
   const [inputValues, setInputValues] = useState({});
-
-  // Simulate loading effect
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, []);  
 
   const handleInputChange = (field, value) => {
     setInputValues((prev) => ({
@@ -39,15 +31,23 @@ const InputTable = () => {
     setSelectedInput(inputType);
   };
 
-  const handleGenerate = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }
-
   const fieldsToRender =
   selectedInput === "type1" ? inputFieldsBasic : inputFieldsAdvanced;
+
+  if (isLoading) {
+    return (
+        <SkeletonLoader />
+  )
+  }
+
+  if (calculatedData) {
+    return (
+      <div className="p-4 bg-gray-100 rounded-md">
+        <h3 className="text-lg font-bold mb-4">Calculation Results</h3>
+        <p>Revenue to Net Income Ratio: {calculatedData.revenueToNetIncome}</p>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -75,10 +75,6 @@ const InputTable = () => {
         </div>
       }
       <div className="inputContainer">
-        {isLoading ? (
-          <SkeletonLoader />
-        ) : 
-        (
           <table className="inputTable">
             <tbody>
               {fieldsToRender.map((field) => (
@@ -93,13 +89,12 @@ const InputTable = () => {
                 </tr>
               ))}
             </tbody>
-          </table>)
-        }
+          </table>
         <div className="flex justify-center mt-7">
           <Button 
             size="lg" 
             variant="secondary" 
-            onClick={() => handleGenerate()}
+            onClick={() => onGenerate(inputValues)}
           >
             Generate
           </Button>

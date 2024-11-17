@@ -1,5 +1,4 @@
 import Header from "@components/header"
-import InputTable from "@components/InputTable"
 import MainLayout from "@components/MainLayout"
 
 
