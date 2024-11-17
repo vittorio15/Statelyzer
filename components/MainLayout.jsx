@@ -39,12 +39,12 @@ const MainLayout = () => {
     <div className="flex justify-between mt-10 p-6">
       {/* Left side (InputTable or Results) */}
       <div className="w-8/12">
-        <InputTable onGenerate={handleGenerate} isLoading={isLoading} calculatedData={calculatedData} />
+        <InputTable onGenerate={handleGenerate} isLoading={isLoading} calculatedData={calculatedData} resetStates={resetStates}/>
       </div>
 
       {/* Right side (Guide or Generated Text) */}
       <div className="w-4/12 ml-4">
-        <Guide isLoading={isLoading} generatedText={generatedText} resetStates={resetStates}/>
+        <Guide isLoading={isLoading} generatedText={generatedText}/>
       </div>
     </div>
   );

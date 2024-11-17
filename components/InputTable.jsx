@@ -16,7 +16,7 @@ const inputFieldsAdvanced = [
   "Operating Income", "COGS", "SG&A", "Interest Expense", "Income Tax Expense"
 ];
 
-const InputTable = ({ onGenerate, isLoading, calculatedData }) => {
+const InputTable = ({ onGenerate, isLoading, calculatedData, resetStates }) => {
   const [selectedInput, setSelectedInput] = useState('type1');
   const [inputValues, setInputValues] = useState({});
 
@@ -42,9 +42,21 @@ const InputTable = ({ onGenerate, isLoading, calculatedData }) => {
 
   if (calculatedData) {
     return (
-      <div className="p-4 bg-gray-100 rounded-md">
-        <h3 className="text-lg font-bold mb-4">Calculation Results</h3>
-        <p>Revenue to Net Income Ratio: {calculatedData.revenueToNetIncome}</p>
+      <div className="w-8/12 pb-2 ml-10 rounded-2xl px-4">
+        <div className="p-4 bg-gray-100 rounded-md text-white border-4 border-white bg-gradient-to-r from-primary via-green-500 to-lime-400">
+          <h3 className="text-lg font-bold mb-4 text-center">Calculation Results</h3>
+          <p>Revenue to Net Income Ratio: {calculatedData.revenueToNetIncome}</p>
+          <p>totalAssetstoCurrentassets: {calculatedData.totalAssetstoCurrentassets}</p>
+        </div>
+        <div className="flex justify-center mt-7">
+          <Button 
+            size="lg" 
+            variant="secondary" 
+            onClick={() => resetStates()}
+          >
+          Reset
+          </Button>
+        </div>
       </div>
     );
   }
