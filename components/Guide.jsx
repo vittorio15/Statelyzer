@@ -1,16 +1,38 @@
 const Guide = ({ isLoading, calculatedData }) => {
-  const renderLoading = () => (
-    <div className="my-2 p-6 bg-gray-100 rounded-lg shadow-2xl border-4 rounded-xl border-lime-400 mr-10 animate-pulse">
-      {[...Array(10)].map((_, idx) => (
-        <div key={idx} className={`my-2 h-12 bg-gray-200 rounded-2xl w-${(idx % 5) + 1}/5`}></div>
-      ))}
-    </div>
-  );
+  const renderLoading = () => {
+    const widths = [
+      "w-3/4",
+      "w-1/2",
+      "w-2/3",
+      "w-4/5",
+      "w-3/5",
+      "w-2/5",
+      "w-1/2",
+      "w-5/6",
+      "w-3/4",
+      "w-1/3"
+    ];
+
+    const skeletonDivs = widths.map((width, index) => (
+      <div
+        key={index}
+        className={`my-2 h-12 bg-gray-200 rounded-2xl ${width}`}
+      ></div>
+    ));
+
+    return (
+      <div className="pb-2 ml-10 rounded-2xl px-4">
+        <div className="my-2 p-6 bg-gray-100 rounded-lg w-full h-auto shadow-2xl border-4 rounded-xl border-lime-400 mr-10 animate-pulse flex flex-col items-center">
+          {skeletonDivs}
+        </div>
+      </div>
+    );
+  };
 
   const renderResults = () => (
     <div>
       <div className="my-2 p-6 bg-gray-100 rounded-lg shadow-2xl border-4 rounded-xl border-lime-400 mr-10">
-        <h3 className="text-lg font-bold mb-4 text-center">Calculation Results</h3>
+        <h3 className="text-2xl font-bold mb-4 text-center">Calculation Results</h3>
         {Object.entries(calculatedData).map(([key, result]) => {
         const { value, color } = result;
 
@@ -53,7 +75,7 @@ const Guide = ({ isLoading, calculatedData }) => {
         <p>asd</p>
       </div>
       <div className="my-2 px-6 py-2 bg-gray-100 rounded-lg shadow-2xl border-4 rounded-xl border-lime-400 mr-10">
-        <h2 className="text-xl font-semibold mb-10 text-center">How to Use</h2>
+        <h2 className="text-2xl font-bold text-center pt-4 pb-6">How to Use</h2>
         <p className="mb-2">1. Choose between Basic and Advanced options using the buttons.</p>
         <p className="mb-2">2. Fill out the fields to provide data.</p>
         <p className="mb-2">3. Click on Generate.</p>
