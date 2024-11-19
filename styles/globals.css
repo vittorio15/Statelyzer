@@ -27,7 +27,7 @@
 }
 
 .inputTable {
-  @apply my-2 min-w-full table-auto border-separate border-2 bg-gradient-to-r from-primary via-green-500 to-lime-400 rounded-2xl border-spacing-0 shadow-2xl;
+  @apply overflow-hidden my-2 min-w-full table-auto border-separate border-2 bg-gradient-to-r from-primary via-green-500 to-lime-400 rounded-2xl border-spacing-0 shadow-2xl;
 }
 
 .numberInputtd {

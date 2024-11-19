@@ -1,20 +1,28 @@
+import TextDatabase from "./TextDatabase";
 
 const TextGenerator = ({ calculatedData }) => {
-  // Function to generate text based on results
   const generateText = (results) => {
-    if (results.revenueToNetIncome === "N/A") {
-      return "We couldn't calculate the Revenue to Net Income ratio.";
-    }
-    return (
-      "The Revenue to Net Income ratio is " + results.revenueToNetIncome + 
-      ". Total assets to current assets ratio is " + results.totalAssetstoCurrentassets
-    )
+    if (!results) return "No data provided.";
+
+    return Object.entries(results)
+      .map(([key, { color }]) => {
+        const textSet = TextDatabase[key];
+        if (!textSet) return `${key.replace(/([a-z])([A-Z])/g, "$1 $2")}: No text available.`;
+
+        // Pick the sentence based on the color
+        const sentence =
+          color === "green"
+            ? textSet.green
+            : color === "yellow"
+            ? textSet.yellow
+            : textSet.red;
+
+        return sentence;
+      })
+      .join(" ");
   };
 
-  const textResult = generateText(calculatedData);
-
-  return textResult;
+  return generateText(calculatedData);
 };
-
 
 export default TextGenerator;
