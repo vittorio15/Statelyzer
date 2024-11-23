@@ -67,27 +67,30 @@ const InputTable = ({ onGenerate, isLoading, generatedText, resetStates }) => {
   if (generatedText) {
     return (
       <div className="w-8/12 py-2 ml-10 rounded-2xl px-4">
-        <div className="p-6 bg-gray-100 rounded-md border-4 border-white text-white bg-gradient-to-r from-lime-400 via-green-500 to-primary">
-          <h3 className="text-2xl font-bold mb-4 text-center">Summary</h3>
+        <div className="p-6 bg-gray-100 rounded-2xl border-4 border-white text-white bg-gradient-to-r from-lime-400 via-green-500 to-primary">
+          <h3 className="text-2xl font-bold mb-4 text-center pb-6">Summary</h3>
           <div className="summary-list">
-          {generatedText ? (
-      generatedText
-        .replace(/\*/g, '') // Remove all asterisks
-        .split('\n') // Split by newlines (or any other delimiter)
-        .map((item, index) => {
-          if (item.trim() !== '') {
-            return (
-              <div key={index} className="summary-item mb-2">
-                <p className="text-lg">
-                  <span className="font-semibold">•</span> {item.trim()}
-                </p>
-              </div>
-            );
-          }
-        })
-    ) : (
-      <p>Summary unavailable.</p>
-    )}
+            {generatedText ? (
+              generatedText
+                .replace(/\*/g, '') // Remove all asterisks
+                .split('\n') // Split by newlines (or any other delimiter)
+                .map((item, index) => {
+                  if (item.trim() !== '') {
+                    const [beforeColon, afterColon] = item.split(':'); // Split the text at the colon
+                    return (
+                      <div key={index} className="summary-item mb-2">
+                        <p className="text-lg">
+                          <span className="font-semibold">•</span>{' '}
+                          <span className="font-semibold">{beforeColon.trim()}:</span>{' '}
+                          {afterColon && afterColon.trim()}
+                        </p>
+                      </div>
+                    );
+                  }
+                })
+            ) : (
+              <p>Summary unavailable.</p>
+            )}
           </div>
         </div>
         <div className="flex justify-center mt-7">

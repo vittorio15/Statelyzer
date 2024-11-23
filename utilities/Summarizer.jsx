@@ -7,10 +7,10 @@ const useSummarizer = () => {
 
   // Define your options
   const options = {
-    sharedContext: 'This is a financial analysis based on balance sheet information',
-    type: 'tl;dr',
+    sharedContext: 'This is a financial analysis based on balance sheet information. The goal is to assess liquidity, profitability, capital structure, and overall financial health. Focus on key ratios such as the current ratio, quick ratio, cash ratio, ROA, ROE, debt-to-equity ratio, and equity levels. Also include a 1 liner summary based on all data',
+    type: 'teaser',
     format: 'plain-text',
-    length: 'medium',
+    length: 'long',
   };
 
   useEffect(() => {

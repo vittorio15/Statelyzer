@@ -27,7 +27,7 @@ const Guide = ({ isLoading, calculatedData }) => {
   const renderResults = () => (
     <div>
       <div className="my-2 p-6 bg-gray-100 rounded-lg shadow-2xl border-4 rounded-xl border-lime-400 mr-10">
-        <h3 className="text-2xl font-bold mb-4 text-center">Calculation Results</h3>
+        <h3 className="text-2xl font-bold mb-4 text-center pb-6">Calculation Results</h3>
         {Object.entries(calculatedData).map(([key, result]) => {
         const { value, color } = result;
 
