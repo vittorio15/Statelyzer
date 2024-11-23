@@ -65,13 +65,15 @@ const Calculator = ({ inputValues }) => {
         ? parseField("Short-Term Debt") / parseField("Long-Term Debt") 
         : null;
 
-    const evaluateThreshold = (value, { low, high }) => {
-      if (value < low && value > low - 0.5) return { value, color: "yellow", text: "Slightly below optimal" };
-      if (value > high && value < high + 0.5) return { value, color: "yellow", text: "Slightly above optimal" };
-      if (value > high + 0.5) return { value, color: "red", text: "Significantly above optimal" };
-      if (value < low - 0.5) return { value, color: "red", text: "Significantly below optimal" };
-      return { value, color: "green", text: "Optimal" };
-    };
+        const evaluateThreshold = (value, { low, high }) => {
+          if (value < low - 0.5) return { value, color: "red", text: "Significantly below optimal" };
+          if (value >= low - 0.5 && value < low) return { value, color: "yellow", text: "Slightly below optimal" };
+          if (value >= low && value <= high) return { value, color: "green", text: "Optimal" };
+          if (value > high && value <= high + 0.5) return { value, color: "yellow", text: "Slightly above optimal" };
+          if (value > high + 0.5) return { value, color: "red", text: "Significantly above optimal" };
+          return { value, color: "green", text: "Optimal" };
+        };
+        
 
     return {
       currentRatio: evaluateThreshold(
