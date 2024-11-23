@@ -6,11 +6,6 @@ const Guide = ({ isLoading, calculatedData }) => {
       "w-2/3",
       "w-4/5",
       "w-3/5",
-      "w-2/5",
-      "w-1/2",
-      "w-5/6",
-      "w-3/4",
-      "w-1/3"
     ];
 
     const skeletonDivs = widths.map((width, index) => (

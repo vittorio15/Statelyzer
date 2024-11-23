@@ -66,11 +66,14 @@ const Calculator = ({ inputValues }) => {
         : null;
 
         const evaluateThreshold = (value, { low, high }) => {
-          if (value < low - 0.5) return { value, color: "red", text: "Significantly below optimal" };
-          if (value >= low - 0.5 && value < low) return { value, color: "yellow", text: "Slightly below optimal" };
+          const thresholdLength = high - low;
+          const deviation = thresholdLength * 0.15
+          
+          if (value < low - deviation) return { value, color: "red", text: "Significantly below optimal" };
+          if (value >= low - deviation && value < low) return { value, color: "yellow", text: "Slightly below optimal" };
           if (value >= low && value <= high) return { value, color: "green", text: "Optimal" };
-          if (value > high && value <= high + 0.5) return { value, color: "yellow", text: "Slightly above optimal" };
-          if (value > high + 0.5) return { value, color: "red", text: "Significantly above optimal" };
+          if (value > high && value <= high + deviation) return { value, color: "yellow", text: "Slightly above optimal" };
+          if (value > high + deviation) return { value, color: "red", text: "Significantly above optimal" };
           return { value, color: "green", text: "Optimal" };
         };
         

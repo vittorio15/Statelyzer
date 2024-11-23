@@ -5,6 +5,14 @@ const useSummarizer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Define your options
+  const options = {
+    sharedContext: 'This is a financial analysis based on balance sheet information',
+    type: 'tl;dr',
+    format: 'plain-text',
+    length: 'medium',
+  };
+
   useEffect(() => {
     const initializeSummarizer = async () => {
       try {
@@ -35,10 +43,12 @@ const useSummarizer = () => {
     initializeSummarizer();
   }, []);
 
+  // Modify summarizeText to use the options
   const summarizeText = async (text) => {
     if (summarizer) {
       try {
-        const result = await summarizer.summarize(text);
+        // Pass options along with the text
+        const result = await summarizer.summarize(text, options);
         return result;
       } catch (err) {
         console.error('Error summarizing text:', err);

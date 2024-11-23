@@ -38,4 +38,28 @@
   @apply px-4 py-2 text-center border-b-2 bg-white text-transparent bg-clip-text font-bold;
 }
 
+.summary-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.summary-item p {
+  color: #f5f5f5;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.summary-item p span {
+  color: #f5f5f5;  /* For bullet color or highlighting */
+}
+
+.summary-item {
+  padding-left: 1rem;
+}
+
+.summary-item:nth-child(even) p {
+  color: #e0f7fa;  /* Light blue for alternating items */
+}
+
+
 }
