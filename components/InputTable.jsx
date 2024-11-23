@@ -5,10 +5,11 @@ import InputField from "./InputField";
 import Button from "./Button";
 
 const inputFieldsBasic = [
-  "Total Assets", "Current Assets", "Cash & Cash Equivalents", 
-  "Total Liabilities", "Current Liabilities", "Long-Term Debt", 
-  "Shareholders' Equity", "Revenue", "Net Income"
-];
+  "Current Assets", "Inventories", "Cash and Cash Equivalents",
+  "Total Assets", "Short-Term Debt", "Long-Term Debt", 
+  "Total Liabilities", "Shareholder's Equity", "Net Income"
+]
+
 
 const inputFieldsAdvanced = [
   ...inputFieldsBasic, "Accounts Receivable", "Gross Profit", 
@@ -67,7 +68,7 @@ const InputTable = ({ onGenerate, isLoading, generatedText, resetStates }) => {
     return (
       <div className="w-8/12 py-2 ml-10 rounded-2xl px-4">
         <div className="p-6 bg-gray-100 rounded-md border-4 border-white text-white bg-gradient-to-r from-lime-400 via-green-500 to-primary">
-          <h3 className="text-2xl font-bold mb-4 text-center">Generated Insights</h3>
+          <h3 className="text-2xl font-bold mb-4 text-center">Summary</h3>
           <p>{generatedText}</p>
         </div>
         <div className="flex justify-center mt-7">

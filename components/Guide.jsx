@@ -45,11 +45,23 @@ const Guide = ({ isLoading, calculatedData }) => {
 
         return (
           <p key={key} className="mb-2">
-            {key
+          {
+            key
               .replace(/([a-z])([A-Z])/g, "$1 $2") // split camelcasing into words
               .toLowerCase() // convert everything to lowercase
               .replace(/^./, (str) => str.toUpperCase()) // capitalize the first letter
-            }
+              .split(" ") // split by spaces
+              .map(word => {
+                if (word === "to") {
+                  return word; // leave "to" as is
+                }
+                if (word === "Roa" || word === "Roe") {
+                  return word.toUpperCase(); // keep "ROA" and "ROE" in uppercase
+                }
+                return word.charAt(0).toUpperCase() + word.slice(1); // capitalize other words
+              })
+              .join(" ") // join back into a string
+          }
             :{" "}
             <span className={colorClass}>
               {value !== null ? value.toFixed(2) : "N/A"}
