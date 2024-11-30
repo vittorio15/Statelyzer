@@ -11,13 +11,7 @@ const inputFieldsBasic = [
 ]
 
 
-const inputFieldsAdvanced = [
-  ...inputFieldsBasic, "Accounts Receivable", "Gross Profit", 
-  "Operating Income", "COGS", "SG&A", "Interest Expense", "Income Tax Expense"
-];
-
 const InputTable = ({ onGenerate, isLoading, generatedText, resetStates }) => {
-  const [selectedInput, setSelectedInput] = useState('type1');
   const [inputValues, setInputValues] = useState({});
 
   const handleInputChange = (field, value) => {
@@ -27,12 +21,8 @@ const InputTable = ({ onGenerate, isLoading, generatedText, resetStates }) => {
     }));
   };
 
-  const handleButtonClick = (inputType) => {
-    setSelectedInput(inputType);
-  };
 
-  const fieldsToRender =
-  selectedInput === "type1" ? inputFieldsBasic : inputFieldsAdvanced;
+  const fieldsToRender = inputFieldsBasic
 
   if (isLoading) {
     const widths = [
@@ -67,7 +57,7 @@ const InputTable = ({ onGenerate, isLoading, generatedText, resetStates }) => {
   if (generatedText) {
     return (
       <div className="w-8/12 py-2 ml-10 rounded-2xl px-4">
-        <div className="p-6 bg-gray-100 rounded-2xl border-4 border-white text-white bg-gradient-to-r from-lime-400 via-green-500 to-primary">
+        <div className="p-6 bg-gray-100 rounded-2xl border-4 border-white text-white bg-gradient-to-r from-primary via-green-500 to-lime-400">
           <h3 className="text-2xl font-bold mb-4 text-center pb-6">Summary</h3>
           <div className="summary-list">
             {generatedText ? (
@@ -108,29 +98,6 @@ const InputTable = ({ onGenerate, isLoading, generatedText, resetStates }) => {
 
   return (
     <div>
-      <div className="flex space-x-4 justify-center ml-10 w-8/12 mb-2">
-        <button
-          onClick={() => handleButtonClick('type1')}
-          className={`px-6 py-2 rounded-md hover:scale-105 ${selectedInput === 'type1' ? 'bg-gradient-to-r from-primary via-green-500 to-lime-400 text-white' : 'bg-gray-200 text-gray-600'}`}
-        >
-          Basic
-        </button>
-        <button
-          onClick={() => handleButtonClick('type2')}
-          className={`px-6 py-2 rounded-md hover:scale-105 ${selectedInput === 'type2' ? 'bg-gradient-to-r from-primary via-green-500 to-lime-400 text-white' : 'bg-gray-200 text-gray-600'}`}
-        >
-          Advanced
-        </button>
-      </div>
-      {selectedInput === 'type2' ? (
-        <div className="bg-red-400 text-center w-8/12 ml-10 items-center">
-          <p>use Select</p>
-        </div>
-      ) :
-        <div className="w-5/12 ml-10 invisible">
-          <p>placeholder</p>
-        </div>
-      }
       <div className="inputContainer">
           <table className="inputTable">
             <thead>

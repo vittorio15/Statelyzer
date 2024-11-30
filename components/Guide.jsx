@@ -83,10 +83,9 @@ const Guide = ({ isLoading, calculatedData }) => {
       </div>
       <div className="my-2 px-6 py-2 bg-gray-100 rounded-lg shadow-2xl border-4 rounded-xl border-lime-400 mr-10">
         <h2 className="text-2xl font-bold text-center pt-4 pb-6">How to Use</h2>
-        <p className="mb-2">1. Choose between Basic and Advanced options using the buttons.</p>
-        <p className="mb-2">2. Fill out the fields to provide data.</p>
-        <p className="mb-2">3. Click on Generate.</p>
-        <p className="mb-2">4. Wait for the results to display here.</p>
+        <p className="mb-2">1. Fill out the fields to provide data.</p>
+        <p className="mb-2">2. Click on Generate.</p>
+        <p className="mb-2">3. Wait for the results to display here.</p>
       </div>
     </div>
   );
