@@ -70,17 +70,6 @@ const Guide = ({ isLoading, calculatedData }) => {
 
   const renderInstructions = () => (
     <div>
-      <div className="flex space-x-4 justify-center ml-10 w-8/12 mb-2 invisible">
-        <p>asd</p>
-        <button
-          className={`px-6 py-2 rounded-md hover:scale-105`}
-        >
-          Basic
-        </button>
-      </div>
-      <div className="w-5/12 ml-10 invisible">
-        <p>asd</p>
-      </div>
       <div className="my-2 px-6 py-2 bg-gray-100 rounded-lg shadow-2xl border-4 rounded-xl border-lime-400 mr-10">
         <h2 className="text-2xl font-bold text-center pt-4 pb-6">How to Use</h2>
         <p className="mb-2">1. Fill out the fields to provide data.</p>
