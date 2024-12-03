@@ -16,9 +16,13 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Using the Ai summary
+## Using the AI summary
 
-In order to access the Ai summary you need to become a google developer, join the early preview program and follow these guides:
+To access the AI summary feature, follow these steps:
+
+1. Become a Google Developer: You need to be part of the Google Developer Program. Sign up and join the early preview program for the AI tools.
+
+2. Follow These Guides:
 
 https://docs.google.com/forms/d/e/1FAIpQLSfZXeiwj9KO9jMctffHPym88ln12xNWCrVkMY_u06WfSTulQg/viewform
 
